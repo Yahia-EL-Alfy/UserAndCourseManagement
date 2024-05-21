@@ -6,11 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
 import java.io.Serializable;
 
 @Entity
-@Table(name = "USERSTABLE")
+@Table(name = "usertable")
 public class Users implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,21 +26,33 @@ public class Users implements Serializable {
     private String password;
 
     @Column(name = "role", nullable = false)
-    private String role; // Admin, Instructor, Student
+    private String role;
 
-    // Constructors, Getters and setters
+    @Column(name = "affiliation", nullable = true)
+    private String affiliation;
+
+    @Column(name = "bio", nullable = true)
+    private String bio;
+
+    @Column(name = "YearsOfExperience", nullable = true)
+    private Integer  YearsOfExperience;
 
 
-// Constructors
+    // Constructors
     public Users() {
     }
 
-    public Users(String username, String email, String password, String role) {
+    public Users(Long id, String username, String email, String password, String role, String affiliation, String bio, int yearsOfExperience) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.affiliation = affiliation;
+        this.bio = bio;
+        YearsOfExperience = yearsOfExperience;
     }
+
 
     // Getters and setters
     public Long getId() {
@@ -85,4 +96,27 @@ public class Users implements Serializable {
     }
 
 
+    public String getAffiliation() {
+        return affiliation;
+    }
+
+    public void setAffiliation(String affiliation) {
+        this.affiliation = affiliation;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public int getYearsOfExperience() {
+        return YearsOfExperience;
+    }
+
+    public void setYearsOfExperience(int yearsOfExperience) {
+        YearsOfExperience = yearsOfExperience;
+    }
 }
